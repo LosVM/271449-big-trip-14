@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
-* Студент: [Владимир Лось](https://up.htmlacademy.ru/ecmascript/14/user/271449).
-* Наставник: `Неизвестно`.
+* Студент: [Владимир Лось](https://htmlacademy.ru/profile/id271449).
+* Наставник: [Артём Рудов](https://htmlacademy.ru/profile/artrudov).
 
 ---
 
