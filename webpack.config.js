@@ -1,14 +1,17 @@
 const path = require('path');
+const MAIN_PATH = './src/main.js';
+const OUTPUT_FILE_NAME = 'bundle.js';
+const directory =  path.resolve(__dirname, 'public');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: MAIN_PATH,
   devtool: 'source-map',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public'),
+    filename: OUTPUT_FILE_NAME,
+    path: directory,
   },  
   devServer: {
-    contentBase: path.resolve(__dirname, 'public'),
+    contentBase: directory,
     watchContentBase: true,
   }  
 };
