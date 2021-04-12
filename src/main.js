@@ -1,16 +1,12 @@
-import {createMenuTemplate} from './view/menu.js';
-import {createFiltersTemplate} from './view/filters.js';
-import {createTripInfoTemplate} from './view/trip-info.js';
-import {createListSortTemplate} from './view/list-sort.js';
-import {createListTemplate} from './view/list-elements.js';
-import {createListItemTemplate} from './view/list-elements.js';
-import {createFormTemplate} from './view/add-form.js';
-import {createEditFormTemplate} from './view/edit-form.js';
-
-
-const renderElements = (container, template, place) => {
-  container.insertAdjacentHTML(place, template);
-};
+import {renderElements} from 'utils';
+import {createMenuTemplate} from 'view/menu.js';
+import {createTimeFiltersTemplate} from 'view/time-filters.js';
+import {createTripInfoTemplate} from 'view/trip-info.js';
+import {createSortFiltersTemplate} from 'view/sort-filters.js';
+import {listTemplate} from 'view/list.js';
+import {createListItemTemplate} from 'view/list-item.js';
+import {createAddFormTemplate} from 'view/add-form.js';
+import {createEditFormTemplate} from 'view/edit-form.js';
 
 const tripInfoContainer = document.querySelector('.trip-main');
 
@@ -20,16 +16,16 @@ const pageNavigation = tripInfoContainer.querySelector('.trip-controls__navigati
 const pageFilters = tripInfoContainer.querySelector('.trip-controls__filters');
 
 renderElements(pageNavigation, createMenuTemplate(), 'beforeend');
-renderElements(pageFilters, createFiltersTemplate(), 'beforeend');
+renderElements(pageFilters, createTimeFiltersTemplate(), 'beforeend');
 
 const eventsContainer = document.querySelector('.trip-events');
 
-renderElements(eventsContainer, createListSortTemplate(), 'afterbegin');
-renderElements(eventsContainer, createListTemplate(), 'beforeend');
+renderElements(eventsContainer, createSortFiltersTemplate(), 'afterbegin');
+renderElements(eventsContainer, listTemplate, 'beforeend');
 
 const pointList = document.querySelector('.trip-events__list');
 
-renderElements(pointList, createFormTemplate(), 'afterbegin');
+renderElements(pointList, createAddFormTemplate(), 'afterbegin');
 renderElements(pointList, createEditFormTemplate(), 'afterbegin');
 
 const POINTS_COUNT = 3;
