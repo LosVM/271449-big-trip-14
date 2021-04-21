@@ -7,6 +7,11 @@ import {listTemplate} from 'view/list.js';
 import {createListItemTemplate} from 'view/list-item.js';
 import {createAddFormTemplate} from 'view/add-form.js';
 import {createEditFormTemplate} from 'view/edit-form.js';
+import {createTrip} from './mock/trip.js';
+
+const TRIPS_COUNT = 15;
+
+const trips = new Array(TRIPS_COUNT).fill().map(createTrip);
 
 const tripInfoContainer = document.querySelector('.trip-main');
 
@@ -26,10 +31,8 @@ renderElements(eventsContainer, listTemplate, 'beforeend');
 const pointList = document.querySelector('.trip-events__list');
 
 renderElements(pointList, createAddFormTemplate(), 'afterbegin');
-renderElements(pointList, createEditFormTemplate(), 'afterbegin');
+renderElements(pointList, createEditFormTemplate(trips[0]), 'afterbegin');
 
-const POINTS_COUNT = 3;
-
-for (let i = 0; i < POINTS_COUNT; i++){
-  renderElements(pointList, createListItemTemplate(), 'beforeend');
+for (let i = 0; i < TRIPS_COUNT; i++){
+  renderElements(pointList, createListItemTemplate(trips[i]), 'beforeend');
 }
