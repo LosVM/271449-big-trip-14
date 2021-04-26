@@ -30,9 +30,9 @@ renderElements(eventsContainer, listTemplate, 'beforeend');
 
 const pointList = document.querySelector('.trip-events__list');
 
-renderElements(pointList, createAddFormTemplate(), 'afterbegin');
+renderElements(pointList, createAddFormTemplate(trips[0]), 'afterbegin');
 renderElements(pointList, createEditFormTemplate(trips[0]), 'afterbegin');
 
-for (let i = 0; i < TRIPS_COUNT; i++){
-  renderElements(pointList, createListItemTemplate(trips[i]), 'beforeend');
-}
+trips.forEach((trip) => {
+  renderElements(pointList, createListItemTemplate(trip), 'beforeend');
+});

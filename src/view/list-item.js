@@ -1,21 +1,21 @@
-import {humanizeTripDate, humanizeTripTime} from 'utils';
+import {humanizeTripDate} from 'utils';
+import {MMM_D_FORMAT, HOURS_AND_MINUTES_FORMAT} from '../mock/const.js';
 
-const createListItemTemplate = (trip) => {
-  const {base_price, date_from, date_to, type, offers} = trip;
+const createListItemTemplate = ({base_price, date_from, date_to, type, offers}) => {
 
   return (
     `<li class="trip-events__item">
       <div class="event">
-        <time class="event__date" datetime="${date_from}">${humanizeTripDate(date_from)}</time>
+        <time class="event__date" datetime="${date_from}">${humanizeTripDate(date_from, MMM_D_FORMAT)}</time>
         <div class="event__type">
           <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
         </div>
         <h3 class="event__title">${type}</h3>
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="${date_from}">${humanizeTripTime(date_from)}</time>
+            <time class="event__start-time" datetime="${date_from}">${humanizeTripDate(date_from, HOURS_AND_MINUTES_FORMAT)}</time>
             &mdash;
-            <time class="event__end-time" datetime="${date_to}">${humanizeTripTime(date_to)}</time>
+            <time class="event__end-time" datetime="${date_to}">${humanizeTripDate(date_to, HOURS_AND_MINUTES_FORMAT)}</time>
           </p>
           <p class="event__duration">30M</p>
         </div>

@@ -13,5 +13,10 @@ const DESCRIPTION = [
   'Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.',
 ];
 const PICTURE_URL = 'http://picsum.photos/248/152?r=';
+const OFFER_TITLES = ['Add luggage', 'Switch to comfort', 'Add meal', 'Choose seats', 'Travel by train'];
+const OFFER_PRICE = [50, 100, 15, 5, 40];
+const DAY_PLUS_TIME_FORMAT = 'DD/MM/YYYY hh:mm';
+const MMM_D_FORMAT = 'MMM D';
+const HOURS_AND_MINUTES_FORMAT = 'hh:mm';
 
-export {TRIP_TYPES, CITIES, DESCRIPTION, PICTURE_URL};
+export {TRIP_TYPES, CITIES, DESCRIPTION, PICTURE_URL, OFFER_TITLES, OFFER_PRICE, DAY_PLUS_TIME_FORMAT, MMM_D_FORMAT, HOURS_AND_MINUTES_FORMAT};
