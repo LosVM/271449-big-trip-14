@@ -1,21 +1,18 @@
 import {humanizeTripDate} from 'utils';
 import {DAY_PLUS_TIME_FORMAT} from '../mock/const.js';
 
-const createCheckboxTemplate = (offers) => {
-  const checkBox = offers.map((offer) => {
-    return (
-      `<div class="event__offer-selector">
-        <input class="event__offer-checkbox  visually-hidden" id="event-offer-${offer.title}-1" type="checkbox" name="event-offer-${offer.title}" checked>
-        <label class="event__offer-label" for="event-offer-${offer.title}-1">
-          <span class="event__offer-title">${offer.title}</span>
-          &plus;&euro;&nbsp;
-          <span class="event__offer-price">${offer.price}</span>
-        </label>
-      </div>`);
-  });
+const getCheckboxTemplate = ({title, price}) => (
+  `<div class="event__offer-selector">
+      <input class="event__offer-checkbox  visually-hidden" id="event-offer-${title}-1" type="checkbox" name="event-offer-${title}" checked>
+      <label class="event__offer-label" for="event-offer-${title}-1">
+        <span class="event__offer-title">${title}</span>
+       &plus;&euro;&nbsp;
+        <span class="event__offer-price">${price}</span>
+      </label>
+  </div>`
+);
 
-  return checkBox.join('');
-};
+const createCheckboxTemplate = (offers) => offers.map(getCheckboxTemplate).join('');
 
 const createEditFormTemplate = ({destination, type, date_from, date_to, base_price, offers}) => {
   return (

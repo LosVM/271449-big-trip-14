@@ -17,6 +17,6 @@ const getRandomElement = (arr) => {
   return arr[randomIndex];
 };
 
-const humanizeTripDate = (date, format) => {return dayjs(date).format(format);};
+const humanizeTripDate = (date, format) => dayjs(date).format(format);
 
 export {renderElements, getRandomInteger, getRandomElement, humanizeTripDate};
