@@ -1,8 +1,8 @@
 import {createCheckboxTemplate} from './edit-form.js';
-import {humanizeTripDate} from 'utils';
+import {humanizeTripDate, createElement} from 'utils';
 import {DAY_PLUS_TIME_FORMAT} from '../mock/const.js';
 
-const createAddFormTemplate = ({destination, type, date_from, date_to, base_price, offers}) => {
+const getAddFormTemplate = ({destination, type, date_from, date_to, base_price, offers}) => {
   return (
     `<li class="trip-events__item">
       <form class="event event--edit" action="#" method="post">
@@ -130,4 +130,27 @@ const createAddFormTemplate = ({destination, type, date_from, date_to, base_pric
   );
 };
 
-export {createAddFormTemplate};
+export default class AddForm {
+  constructor(trip) {
+    this._trip = trip;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return getAddFormTemplate(this._trip);
+  }
+
+  getElement() {
+    if(!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+
+export {getAddFormTemplate};
