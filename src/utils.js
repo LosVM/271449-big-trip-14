@@ -33,4 +33,10 @@ const createElement = (template) => {
   return newElement.firstChild;
 };
 
-export {getRandomInteger, getRandomElement, humanizeTripDate, createElement, renderElement};
+export {
+  getRandomInteger,
+  getRandomElement,
+  humanizeTripDate,
+  createElement,
+  renderElement
+};
