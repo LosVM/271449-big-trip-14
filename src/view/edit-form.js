@@ -138,6 +138,9 @@ export default class EditForm {
   constructor(trip) {
     this._trip = trip;
     this._element = null;
+
+    this._editClickHandler = this._editClickHandler.bind(this);
+    this._callback = {};
   }
 
   getTemplate() {
@@ -150,6 +153,16 @@ export default class EditForm {
     }
 
     return this._element;
+  }
+
+  _editClickHandler(evt) {
+    evt.preventDefault();
+    this._callback.editClick();
+  }
+
+  setEditClickHandler(callback) {
+    this._callback.editClick = callback;
+    this.getElement().querySelector('form').addEventListener('submit', this._editClickHandler);
   }
 
   removeElement() {

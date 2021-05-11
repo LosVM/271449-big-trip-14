@@ -47,6 +47,9 @@ export default class ListItem {
   constructor(trip) {
     this._trip = trip;
     this._element = null;
+
+    this._clickHandler = this._clickHandler.bind(this);
+    this._callback = {};
   }
 
   getTemplate() {
@@ -59,6 +62,15 @@ export default class ListItem {
     }
 
     return this._element;
+  }
+
+  _clickHandler() {
+    this._callback.click();
+  }
+
+  setClickHandler(callback) {
+    this._callback.click = callback;
+    this.getElement().querySelector('.event__rollup-btn').addEventListener('click', this._clickHandler);
   }
 
   removeElement() {

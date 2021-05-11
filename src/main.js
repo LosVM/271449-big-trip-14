@@ -42,12 +42,11 @@ const renderTrip = (listElement, trip) => {
     listElement.replaceChild(tripComponent.getElement(), editFormComponent.getElement());
   };
 
-  tripComponent.getElement().querySelector('.event__rollup-btn').addEventListener('click', () => {
+  tripComponent.setClickHandler(() => {
     replaceTripToForm();
   });
 
-  editFormComponent.getElement().querySelector('form').addEventListener('submit', (evt) => {
-    evt.preventDefault();
+  editFormComponent.setEditClickHandler(() => {
     replaceFormToTrip();
   });
 
