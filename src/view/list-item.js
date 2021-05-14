@@ -1,8 +1,7 @@
-import {humanizeTripDate} from 'utils';
+import {humanizeTripDate, createElement} from 'utils';
 import {MMM_D_FORMAT, HOURS_AND_MINUTES_FORMAT} from '../mock/const.js';
 
-const createListItemTemplate = ({base_price, date_from, date_to, type, offers}) => {
-
+const getListItemTemplate = ({base_price, date_from, date_to, type, offers}) => {
   return (
     `<li class="trip-events__item">
       <div class="event">
@@ -44,4 +43,37 @@ const createListItemTemplate = ({base_price, date_from, date_to, type, offers}) 
   );
 };
 
-export {createListItemTemplate};
+export default class ListItem {
+  constructor(trip) {
+    this._trip = trip;
+    this._element = null;
+
+    this._clickHandler = this._clickHandler.bind(this);
+    this._callback = {};
+  }
+
+  getTemplate() {
+    return getListItemTemplate(this._trip);
+  }
+
+  getElement() {
+    if(!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  _clickHandler() {
+    this._callback.click();
+  }
+
+  setClickHandler(callback) {
+    this._callback.click = callback;
+    this.getElement().querySelector('.event__rollup-btn').addEventListener('click', this._clickHandler);
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

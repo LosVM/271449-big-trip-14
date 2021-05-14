@@ -1,4 +1,4 @@
-import {humanizeTripDate} from 'utils';
+import {humanizeTripDate, createElement} from 'utils';
 import {DAY_PLUS_TIME_FORMAT} from '../mock/const.js';
 
 const getCheckboxTemplate = ({title, price}) => (
@@ -12,9 +12,9 @@ const getCheckboxTemplate = ({title, price}) => (
   </div>`
 );
 
-const createCheckboxTemplate = (offers) => offers.map(getCheckboxTemplate).join('');
+export const createCheckboxTemplate = (offers) => offers.map(getCheckboxTemplate).join('');
 
-const createEditFormTemplate = ({destination, type, date_from, date_to, base_price, offers}) => {
+const getEditFormTemplate = ({destination, type, date_from, date_to, base_price, offers}) => {
   return (
     `<li class="trip-events__item">
       <form class="event event--edit" action="#" method="post">
@@ -134,4 +134,38 @@ const createEditFormTemplate = ({destination, type, date_from, date_to, base_pri
   );
 };
 
-export {createEditFormTemplate, createCheckboxTemplate};
+export default class EditForm {
+  constructor(trip) {
+    this._trip = trip;
+    this._element = null;
+
+    this._editClickHandler = this._editClickHandler.bind(this);
+    this._callback = {};
+  }
+
+  getTemplate() {
+    return getEditFormTemplate(this._trip);
+  }
+
+  getElement() {
+    if(!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  _editClickHandler(evt) {
+    evt.preventDefault();
+    this._callback.editClick();
+  }
+
+  setEditClickHandler(callback) {
+    this._callback.editClick = callback;
+    this.getElement().querySelector('form').addEventListener('submit', this._editClickHandler);
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

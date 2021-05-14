@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
 * Студент: [Владимир Лось](https://htmlacademy.ru/profile/id271449).
-* Наставник: [Артём Рудов](https://htmlacademy.ru/profile/artrudov).
+* Наставник: [Максим Деев](https://htmlacademy.ru/profile/id685777).
 
 ---
 

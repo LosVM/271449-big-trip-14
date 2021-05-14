@@ -7,10 +7,6 @@ const getRandomInteger = (a = 0, b = 1) => {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-const renderElements = (container, template, place) => {
-  container.insertAdjacentHTML(place, template);
-};
-
 const getRandomElement = (arr) => {
   const randomIndex = getRandomInteger(0, arr.length - 1);
 
@@ -19,4 +15,28 @@ const getRandomElement = (arr) => {
 
 const humanizeTripDate = (date, format) => dayjs(date).format(format);
 
-export {renderElements, getRandomInteger, getRandomElement, humanizeTripDate};
+const renderElement = (container, element, place) => {
+  switch (place) {
+    case 'afterbegin':
+      container.prepend(element);
+      break;
+    case 'beforeend':
+      container.append(element);
+      break;
+  }
+};
+
+const createElement = (template) => {
+  const newElement = document.createElement('div');
+  newElement.innerHTML = template;
+
+  return newElement.firstChild;
+};
+
+export {
+  getRandomInteger,
+  getRandomElement,
+  humanizeTripDate,
+  createElement,
+  renderElement
+};
