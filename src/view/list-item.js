@@ -1,5 +1,6 @@
-import {humanizeTripDate, createElement} from 'utils';
+import {humanizeTripDate} from '../utils/common.js';
 import {MMM_D_FORMAT, HOURS_AND_MINUTES_FORMAT} from '../mock/const.js';
+import Abstract from './abstract.js';
 
 const getListItemTemplate = ({base_price, date_from, date_to, type, offers}) => {
   return (
@@ -43,10 +44,10 @@ const getListItemTemplate = ({base_price, date_from, date_to, type, offers}) => 
   );
 };
 
-export default class ListItem {
+export default class ListItem extends Abstract {
   constructor(trip) {
+    super();
     this._trip = trip;
-    this._element = null;
 
     this._clickHandler = this._clickHandler.bind(this);
     this._callback = {};
@@ -56,14 +57,6 @@ export default class ListItem {
     return getListItemTemplate(this._trip);
   }
 
-  getElement() {
-    if(!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
   _clickHandler() {
     this._callback.click();
   }
@@ -71,9 +64,5 @@ export default class ListItem {
   setClickHandler(callback) {
     this._callback.click = callback;
     this.getElement().querySelector('.event__rollup-btn').addEventListener('click', this._clickHandler);
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
