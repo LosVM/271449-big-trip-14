@@ -1,6 +1,7 @@
 import {createCheckboxTemplate} from './edit-form.js';
-import {humanizeTripDate, createElement} from 'utils';
+import {humanizeTripDate} from '../utils/common.js';
 import {DAY_PLUS_TIME_FORMAT} from '../mock/const.js';
+import Abstract from './abstract.js';
 
 const getAddFormTemplate = ({destination, type, date_from, date_to, base_price, offers}) => {
   return (
@@ -130,26 +131,14 @@ const getAddFormTemplate = ({destination, type, date_from, date_to, base_price, 
   );
 };
 
-export default class AddForm {
+export default class AddForm extends Abstract {
   constructor(trip) {
+    super();
     this._trip = trip;
-    this._element = null;
   }
 
   getTemplate() {
     return getAddFormTemplate(this._trip);
-  }
-
-  getElement() {
-    if(!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
 

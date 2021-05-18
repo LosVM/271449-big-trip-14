@@ -1,6 +1,5 @@
-import {getRandomInteger} from 'utils';
+import {getRandomInteger, getRandomElement} from '../utils/common.js';
 import {TRIP_TYPES, CITIES, DESCRIPTION, PICTURE_URL, OFFER_TITLES, OFFER_PRICE} from './const.js';
-import {getRandomElement} from 'utils';
 import dayjs from 'dayjs';
 
 const generatePictures = () => {

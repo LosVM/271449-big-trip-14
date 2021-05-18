@@ -1,4 +1,4 @@
-import {renderElement} from 'utils';
+import {renderElement, replace} from './utils/render.js';
 import SiteMenuView from 'view/menu.js';
 import TimeFiltersView from 'view/time-filters.js';
 import TripInfoView from 'view/trip-info.js';
@@ -14,32 +14,32 @@ const trips = new Array(TRIPS_COUNT).fill().map(createTrip);
 
 const tripInfoContainer = document.querySelector('.trip-main');
 
-renderElement(tripInfoContainer, new TripInfoView().getElement(), 'afterbegin');
+renderElement(tripInfoContainer, new TripInfoView(), 'afterbegin');
 
 const pageNavigation = tripInfoContainer.querySelector('.trip-controls__navigation');
 const pageFilters = tripInfoContainer.querySelector('.trip-controls__filters');
 
-renderElement(pageNavigation, new SiteMenuView().getElement(), 'beforeend');
-renderElement(pageFilters, new TimeFiltersView().getElement(), 'beforeend');
+renderElement(pageNavigation, new SiteMenuView(), 'beforeend');
+renderElement(pageFilters, new TimeFiltersView(), 'beforeend');
 
 const eventsContainer = document.querySelector('.trip-events');
 
-renderElement(eventsContainer, new SortFiltersView().getElement(), 'afterbegin');
+renderElement(eventsContainer, new SortFiltersView(), 'afterbegin');
 
 const tripList = new TripListView();
 
-renderElement(eventsContainer, tripList.getElement(), 'beforeend');
+renderElement(eventsContainer, tripList, 'beforeend');
 
 const renderTrip = (listElement, trip) => {
   const tripComponent = new ListItemView(trip);
   const editFormComponent = new EditFormView(trip);
 
   const replaceTripToForm = () => {
-    listElement.replaceChild(editFormComponent.getElement(), tripComponent.getElement());
+    replace(editFormComponent, tripComponent);
   };
 
   const replaceFormToTrip = () => {
-    listElement.replaceChild(tripComponent.getElement(), editFormComponent.getElement());
+    replace(tripComponent, editFormComponent);
   };
 
   tripComponent.setClickHandler(() => {
@@ -50,7 +50,7 @@ const renderTrip = (listElement, trip) => {
     replaceFormToTrip();
   });
 
-  renderElement(listElement, tripComponent.getElement(), 'beforeend');
+  renderElement(listElement, tripComponent, 'beforeend');
 };
 
 trips.forEach((trip) => {

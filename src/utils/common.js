@@ -15,28 +15,8 @@ const getRandomElement = (arr) => {
 
 const humanizeTripDate = (date, format) => dayjs(date).format(format);
 
-const renderElement = (container, element, place) => {
-  switch (place) {
-    case 'afterbegin':
-      container.prepend(element);
-      break;
-    case 'beforeend':
-      container.append(element);
-      break;
-  }
-};
-
-const createElement = (template) => {
-  const newElement = document.createElement('div');
-  newElement.innerHTML = template;
-
-  return newElement.firstChild;
-};
-
 export {
   getRandomInteger,
   getRandomElement,
-  humanizeTripDate,
-  createElement,
-  renderElement
+  humanizeTripDate
 };

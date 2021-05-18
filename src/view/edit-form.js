@@ -1,5 +1,6 @@
-import {humanizeTripDate, createElement} from 'utils';
+import {humanizeTripDate} from '../utils/common.js';
 import {DAY_PLUS_TIME_FORMAT} from '../mock/const.js';
+import Abstract from './abstract.js';
 
 const getCheckboxTemplate = ({title, price}) => (
   `<div class="event__offer-selector">
@@ -134,10 +135,10 @@ const getEditFormTemplate = ({destination, type, date_from, date_to, base_price,
   );
 };
 
-export default class EditForm {
+export default class EditForm extends Abstract {
   constructor(trip) {
+    super();
     this._trip = trip;
-    this._element = null;
 
     this._editClickHandler = this._editClickHandler.bind(this);
     this._callback = {};
@@ -145,14 +146,6 @@ export default class EditForm {
 
   getTemplate() {
     return getEditFormTemplate(this._trip);
-  }
-
-  getElement() {
-    if(!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
   }
 
   _editClickHandler(evt) {
@@ -163,9 +156,5 @@ export default class EditForm {
   setEditClickHandler(callback) {
     this._callback.editClick = callback;
     this.getElement().querySelector('form').addEventListener('submit', this._editClickHandler);
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
